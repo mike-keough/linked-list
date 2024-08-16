@@ -42,28 +42,69 @@ function linkedList() {
 
     //add new data and make it head
     function prepend(data) {
+        //create data
+        let newNode = node(data)
+        //
+        newNode.next = head
 
+        head = newNode
     }
+
     //return the length of the list by node
     function size() {
-
+        let count = 0
+        current = head
+        while (current !== null) {
+            count++
+            current = current.next
+        }
+        return count
     }
-    //return data at index 0
+
+    //return data at head
     function start() {
-
+        if (head) {
+            return head.data
+        } else {return 0}
     }
+
     //return the final data value before null
     function tail() {
-        
+        if (!head) {
+            return 0
+        }
+        if (head) {
+            current = head
+            while (current.next) {
+                current = current.next
+                if (current.next === null) {
+                    return current.data
+                }
+            }
+        }
     }
+
     //return the value at a given index
     function at(index) {
-
+        if (index < 0) return `use a positive integer up to ${size()}`
+       current = head
+       let count = 0
+       while (current !== null) {
+        count ++
+        if (count === index) {
+            return current.data
+        } else if (current.next === null) {
+            return `the list is only had ${size()} items`
+        }
+        current = current.next
+       } 
     }
+
     //remove the last value before null
     function pop() {
 
     }
+
     //return the value of the data
     function contains(data) {
 
