@@ -16,7 +16,7 @@ function linkedList() {
             head = newNode
             return
         }
-        //if no head is found set it to current node
+        //if head is found set it to current node
         let current = head;
         //if new data has a next method continue until null
         while (current.next) {
@@ -31,7 +31,7 @@ function linkedList() {
         let current = head
         //while current isnt null print
         while (current) {
-            console.log("( " + current.data + " ) ->")
+            console.log("( "+ current.data +" ) ->")
             current = current.next
             if (current === null) {
                 return null
@@ -53,11 +53,12 @@ function linkedList() {
     //return the length of the list by node
     function size() {
         let count = 0
-        current = head
+        let current = head
         while (current !== null) {
             count++
             current = current.next
         }
+        console.log(count)
         return count
     }
 
@@ -74,7 +75,7 @@ function linkedList() {
             return 0
         }
         if (head) {
-            current = head
+            let current = head
             while (current.next) {
                 current = current.next
                 if (current.next === null) {
@@ -94,7 +95,7 @@ function linkedList() {
         if (count === index) {
             return current.data
         } else if (current.next === null) {
-            return `the list is only had ${size()} items`
+            return `the list only contains ${size()} items`
         }
         current = current.next
        } 
@@ -102,13 +103,65 @@ function linkedList() {
 
     //remove the last value before null
     function pop() {
-
+        if (!head) {
+            return 0
+        }
+        let current = head
+        let last = null
+        while(current.next) {
+            last = current
+            current = current.next
+        }
+        last.next = null
     }
 
     //return the value of the data
     function contains(data) {
-
+        if (!head) {
+            return 0
+        }
+        let current = head
+        while (current) {
+            if (current.data === data) {
+                return true
+            }
+            current = current.next
+        }
+        return false
     }
+
+    function insertAt(val, index) {
+        if (!head) {
+            return 0
+        }
+        let count = 0
+        let current = head
+        let onHold = null
+        while (current && count < index) {
+            onHold = current
+            current = current.next
+            count++
+        }
+        let newNode = node(val, current)
+        onHold.next = newNode
+    }
+
+    function removeAt(index) {
+        if (!head) {
+            return 0
+        }
+        let current = head
+        let remove = null
+        let count = 0
+        while (current && count < index) {
+            remove = current
+            current.next = current
+            count++
+        }
+        remove.next = null
+        
+    }
+    
 
     return {
         append,
@@ -120,7 +173,10 @@ function linkedList() {
         pop,
         contains,
         toString,
-
+        insertAt,
+        removeAt
     }
+
 }
 
+export { linkedList };
