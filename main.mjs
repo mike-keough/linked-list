@@ -8,5 +8,5 @@ ll.append("hamster");
 ll.append("snake");
 ll.append("turtle");
 ll.insertAt("shark", 4)
-ll.removeAt(4)
+ll.removeAt(6)
 ll.toString()

@@ -155,10 +155,10 @@ function linkedList() {
         let count = 0
         while (current && count < index) {
             remove = current
-            current.next = current
+            current = current.next
             count++
         }
-        remove.next = null
+        remove.next = current.next
         
     }
     
